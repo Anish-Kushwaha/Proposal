@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Proposal 💖</title>
+
+<style>
+/* ================= RESET ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+/* ================= BODY ================= */
+body{
+  min-height:100vh;
+  background: linear-gradient(135deg,#fbc2eb,#a6c1ee);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* ================= MAIN WRAPPER ================= */
+.main{
+  width:100%;
+  max-width:420px;
+  padding:24px 18px 16px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+
+/* ================= CONTENT ================= */
+.container{
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
+}
+
+.container.active{
+  display:flex;
+}
+
+.tenor-gif-embed{
+  width:100%;
+  max-width:280px;
+}
+
+/* ================= TEXT ================= */
+h1{
+  font-size:2.1rem;
+  line-height:1.25;
+  color:#111;
+}
+
+.emoji{
+  font-size:2rem;
+}
+
+p{
+  font-size:1.15rem;
+  color:#333;
+}
+
+.quote{
+  font-size:.95rem;
+  font-style:italic;
+  opacity:.75;
+}
+
+/* ================= BUTTONS ================= */
+.btn{
+  margin-top:10px;
+  display:flex;
+  gap:18px;
+}
+
+.btn button{
+  border:none;
+  padding:12px 34px;
+  font-size:1.2rem;
+  border-radius:40px;
+  background:#fff;
+  color:#111;
+  cursor:pointer;
+  box-shadow:0 10px 24px rgba(0,0,0,.25);
+  transition:.25s;
+}
+
+.btn button:hover{
+  transform:scale(1.06);
+}
+
+/* ================= FOOTER ================= */
+footer{
+  margin-top:22px;
+  font-size:.72rem;
+  opacity:.6;
+  line-height:1.4;
+}
+
+/* ================= HEARTS ================= */
+.heart{
+  position:absolute;
+  top:-40px;
+  font-size:1.6rem;
+  pointer-events:none;
+  animation:fall linear infinite;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh);
+    opacity:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔊 MUSIC -->
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/10/30/audio_8fca8f0ec3.mp3" type="audio/mpeg">
+</audio>
+
+<div class="main">
+
+  <!-- PAGE 1 -->
+  <div class="container active" id="p1">
+    <div class="tenor-gif-embed" data-postid="22885016"></div>
+    <h1>Do you love me??</h1>
+    <div class="emoji">🤗</div>
+    <p>Cutie, I'm always yours </p>
+
+    <div class="btn">
+      <button onclick="yes()">Yes</button>
+      <button onclick="nextPage(2)">No</button>
+    </div>
+  </div>
+
+  <!-- PAGE 2 -->
+  <div class="container" id="p2">
+    <div class="tenor-gif-embed" data-postid="22050818"></div>
+    <h1>Please think again...!! 🙄</h1>
+    <p>Itni jaldi na matt bolo...... 😥</p>
+    <div class="btn">
+      <button onclick="yes()">Yes</button>
+      <button onclick="nextPage(3)">No</button>
+    </div>
+  </div>
+
+  <!-- PAGE 3 -->
+  <div class="container" id="p3">
+    <div class="tenor-gif-embed" data-postid="15195810"></div>
+    <h1>Ek baar aur soch lo 😣</h1>
+    <p>Plzzz maan jao....</p>
+    <div class="btn">
+      <button onclick="yes()">Yes</button>
+      <button onclick="nextPage(4)">No</button>
+    </div>
+  </div>
+
+  <!-- PAGE 4 -->
+  <div class="container" id="p4">
+    <div class="tenor-gif-embed" data-postid="15974530976611222074"></div>
+    <h1>Baby maan jao na 😭</h1>
+    <p>Bhut galat baat hai yrr</p>
+    <div class="btn">
+      <button onclick="yes()">Yes</button>
+      <button id="move-random">No</button>
+    </div>
+  </div>
+
+  <!-- FINAL -->
+  <div class="container" id="yes">
+    <div class="tenor-gif-embed" data-postid="253027946666209433"></div>
+    <h1>I knew it....! 😘</h1>
+    <p>You love me a lot 💖</p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+  <p class="quote">“I don’t follow the universe — I reprogram it.”</p>
+    © 2025 Anish Kushwaha · All rights reserved<br>
+    ⚚Ⓐ⚚
+  </footer>
+
+</div>
+
+<script async src="https://tenor.com/embed.js"></script>
+
+<script>
+function nextPage(n){
+  document.querySelectorAll(".container").forEach(c=>c.classList.remove("active"));
+  document.getElementById("p"+n).classList.add("active");
+}
+
+function yes(){
+  document.querySelectorAll(".container").forEach(c=>c.classList.remove("active"));
+  document.getElementById("yes").classList.add("active");
+  for(let i=0;i<60;i++)createHeart();
+}
+
+function createHeart(){
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML=["❤️","🥰","🫂","😘"][Math.floor(Math.random()*4)];
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(Math.random()*6+4)+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),8000);
+}
+
+const noBtn=document.getElementById("move-random");
+noBtn.addEventListener("mouseenter",()=>{
+  noBtn.style.position="absolute";
+  noBtn.style.top=Math.random()*70+"%";
+  noBtn.style.left=Math.random()*70+"%";
+});
+</script>
+
+</body>
+  </html>
